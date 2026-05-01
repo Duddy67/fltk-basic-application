@@ -29,6 +29,11 @@ enum class EditID {
     UNDO, REDO, NONE
 };
 
+enum class FileID {
+    NEW, OPEN, CLOSE, SAVE, 
+    SAVE_AS, QUIT
+};
+
 enum class TransportID { PLAY, STOP, PAUSE, RECORD, LOOP };
 
 enum class Action {ACTIVATE, DEACTIVATE};

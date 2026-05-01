@@ -22,7 +22,8 @@ class Application : public Fl_Double_Window
     Fl_Menu_Item* undoMenuItem = nullptr;
     Fl_Menu_Item* redoMenuItem = nullptr;
     Fl_Native_File_Chooser* fileChooser = nullptr;
-    Fl_Box* filler = nullptr;
+    // Widget that holds the current project UI.
+    Fl_Box* container = nullptr;
     NewDialog* newDlg = nullptr;
     // Stores menu item labels to prevent trash characters (eg: ^$¨)
     // when updating labels.
@@ -34,10 +35,17 @@ class Application : public Fl_Double_Window
         Application(int w, int h, const char* l, int argc, char* argv[]);
 
         void createMenu();
-        void open(const char* filename);
-        void save(const char* filename);
+        void openFile(const char* filename);
         const char* untitledDefault();
         int isFileExist(const char* filename);
+        // Menu actions.
+        void onMenuFile(FileID id);
+        void onNew();
+        void onOpen();
+        void onClose();
+        void onSave();
+        void onSaveAs();
+        void onQuit();
         void onMenuEdit(EditID id);
         void onCopy();
         void onPaste();
@@ -47,15 +55,7 @@ class Application : public Fl_Double_Window
         void onDelete();
 
         // Call back functions.
-        static void quit_cb(Fl_Widget* w, void* data);
         static void noEscapeKey_cb(Fl_Widget* w, void* data);
-        static void dialog_cb(Fl_Widget* w, void* data);
-        static void new_cb(Fl_Widget* w, void* data);
-        static void open_cb(Fl_Widget* w, void* data);
-        static void save_cb(Fl_Widget* w, void* data);
-        static void saveas_cb(Fl_Widget* w, void* data);
-        static void ok_cb(Fl_Widget* w, void* data);
-        static void cancel_cb(Fl_Widget* w, void* data);
 };
 
 #endif

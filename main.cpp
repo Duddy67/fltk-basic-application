@@ -26,27 +26,27 @@ Application::Application(int w, int h, const char *l, int argc, char *argv[]) : 
 
     toolbar->end();
 
+    // Add an invisible box to absorb resizing
+    // It must be placed over the remaining space
+
+    // Matches group size (ie: toolbar).
+    container = new Fl_Box(0, SMALL_SPACE * 2, w, h - (SMALL_SPACE * 2)); 
+    // Make it invisible.
+    container->hide(); 
+    // Set this box as the resizable area.
+    resizable(container); 
+    // Prevent toolbar (and its children) from being resized.
+    toolbar->resizable(nullptr);
+
+    // Stop adding children to the main window.
+    end();
+
     // Initialize the file chooser
     fileChooser = new Fl_Native_File_Chooser();
     // Sets the current filename filter patterns (ie: extension).
     fileChooser->filter("Text\t*.txt\n");
     // Sets the default filename for the chooser.
     fileChooser->preset_file(untitledDefault());
-
-    // Stop adding children to this window.
-    end();
-
-    // Add an invisible box to absorb resizing
-    // It must be placed over the remaining space
-
-    // Matches group size (ie: toolbar).
-    filler = new Fl_Box(0, SMALL_SPACE * 2, w, h - SMALL_SPACE); 
-    // Make it invisible.
-    filler->hide(); 
-    // Set this box as the resizable area.
-    resizable(filler); 
-    // Prevent toolbar (and its children) from being resized.
-    toolbar->resizable(nullptr);
 
     show();
 

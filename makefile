@@ -1,5 +1,5 @@
-SRC = main.cpp application/menu.cpp application/callbacks.cpp dialogs/dialog.cpp \
-      dialogs/new.cpp application/menu/edit.cpp
+SRC = main.cpp application/menu.cpp application/callbacks.cpp application/application.cpp dialogs/dialog.cpp \
+      dialogs/new.cpp application/menu/edit.cpp application/menu/file.cpp
 CXX = g++
 CXXFLAGS = -Wall $(shell fltk-config --cxxflags)
 
